@@ -8,7 +8,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="robbyrussell"
+# ZSH_THEME="robbyrussell"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -70,7 +70,7 @@ zstyle ':omz:update' frequency 13
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(git aws helm kubectl zsh-interactive-cd zsh-completions)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -101,7 +101,15 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-source <(kubectl completion zsh)
+
+if type brew &>/dev/null; then
+    FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+    FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+
+    autoload -Uz compinit
+    rm -f ~/.zcompdump; compinit
+fi
+
 alias cat='bat'
 alias k=kubectl
 eval "$(thefuck --alias)"
@@ -109,3 +117,6 @@ autoload -U +X compinit && compinit
 autoload -U +X bashcompinit && bashcompinit
 source ~/bash_completions/kubie.bash
 [[ -s "$HOME/.local/share/marker/marker.sh" ]] && source "$HOME/.local/share/marker/marker.sh"
+source $(brew --prefix)/opt/powerlevel10k/powerlevel10k.zsh-theme
+source $HOME/.oh-my-zsh/custom/plugins/fzf-tab-completion/zsh/fzf-zsh-completion.sh
+zstyle ':completion:*' fzf-search-display true

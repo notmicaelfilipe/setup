@@ -5,7 +5,6 @@ echo "Install pre-requirements"
 sudo apt update 
 sudo apt install build-essential procps curl file git -y
 
-xcode-select --install
 
 echo "Install bash-it"
 
@@ -20,7 +19,7 @@ eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 brew update
 brew upgrade
 
-brew install gcc jq kubectl k9s helm bat fzf htop dive whalebrew kubie warrensbox/tap/tfswitch homeport/tap/dyff thefuck
+brew install gcc jq kubectl k9s helm bat fzf htop dive whalebrew kubie warrensbox/tap/tfswitch homeport/tap/dyff thefuck bash-completions aws
 /home/linuxbrew/.linuxbrew/opt/fzf/install --all
 
 

@@ -4,7 +4,7 @@ echo "Install pre-requirements"
 if command -v zsh &> /dev/null && command -v git &> /dev/null && command -v curl &> /dev/null; then
     echo -e "ZSH and Git are already installed\n"
 else
-    if sudo apt install -y zsh git curl || sudo pacman -S zsh git curl || sudo dnf install -y zsh git curl || sudo yum install -y zsh git curl || sudo brew install git zsh curl || pkg install git zsh curl ; then
+    if sudo apt update && sudo apt install -y build-essential procps curl file git zsh  || sudo brew install git zsh curl  ; then
         echo -e "zsh curl and git Installed\n"
     else
         echo -e "Please install the following packages first, then try again: zsh git curl \n" && exit
@@ -18,29 +18,26 @@ else
     echo "Ohmysh already installed"
 fi
 
-echo "Install brew"
 
-NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+if [ ! -d ~/.oh-my-zsh/custom/plugins/zsh-completions ]; then
+    echo "Installing zsh-completions"
+    git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-completions
+else
+    echo "zsh-completions already installed"
+fi
 
-echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> ~/.zprofile
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+if [ ! -d ~/.oh-my-zsh/custom/plugins/fzf-tab-completion ]; then
+    echo "Installing fzf-tab-completion"
+    git clone https://github.com/lincheney/fzf-tab-completion.git ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/fzf-tab-completion
+else
+    echo "fzf-tab-completion already installed"
+fi
 
-brew update
-brew upgrade
+if [ ! -d ~/.marker ]; then
+    echo "Installing marker"
+    git clone https://github.com/notmicaelfilipe/marker.git ~/.marker && ~/.marker/install.py
+else
+    echo "marker already installed"
+fi
 
-brew install awscli gcc jq kubectl k9s helm bat fzf htop dive whalebrew kubie warrensbox/tap/tfswitch homeport/tap/dyff thefuck
-/home/linuxbrew/.linuxbrew/opt/fzf/install --all
-
-
-
-{
-    echo 'source <(kubectl completion zsh)'
-    echo "alias cat='bat'"
-    echo "alias k=kubectl"
-    echo 'eval "$(thefuck --alias)"'
-} >> ~/.zshrc
-
-mkdir ~/bash_completions
-cp ./kubie.bash ~/bash_completions
-
-echo '[[ -s "$HOME/.local/share/marker/marker.sh" ]] && source "$HOME/.local/share/marker/marker.sh"' >> ~/.zshrc
+./brew.sh
