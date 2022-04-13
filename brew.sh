@@ -17,6 +17,7 @@ brew install awscli gcc jq kubectl k9s helm bat fzf htop dive whalebrew kubie wa
 /home/linuxbrew/.linuxbrew/opt/fzf/install --all
 pipx ensurepath
 pipx install aws-sso-util
+pipx ensurepath
 
 if [ ! -d ~/bash_completions ]; then
     cp -r bash_completions ~
