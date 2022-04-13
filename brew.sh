@@ -25,5 +25,4 @@ fi
 
 cp ./.zshrc ~/
 
-echo "Open a new terminal"
-exit
+echo "Open a new terminal" && exit
