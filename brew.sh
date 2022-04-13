@@ -13,15 +13,16 @@ fi
 brew update
 brew upgrade
 
-brew install awscli gcc jq kubectl k9s helm bat fzf htop dive whalebrew kubie warrensbox/tap/tfswitch homeport/tap/dyff thefuck zsh-completions romkatv/powerlevel10k/powerlevel10k
+brew install awscli gcc jq kubectl k9s helm bat fzf htop dive whalebrew kubie warrensbox/tap/tfswitch homeport/tap/dyff thefuck zsh-completions romkatv/powerlevel10k/powerlevel10k pipx
 /home/linuxbrew/.linuxbrew/opt/fzf/install --all
+pipx ensurepath
+pipx install aws-sso-util
 
 if [ ! -d ~/bash_completions ]; then
-    mkdir ~/bash_completions
-    cp ./kubie.bash ~/bash_completions
+    cp -r bash_completions ~
 fi
 
 cp ./.zshrc ~/
 
 echo "Open a new terminal"
-exit 0
+exit

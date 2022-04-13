@@ -116,6 +116,7 @@ eval "$(thefuck --alias)"
 autoload -U +X compinit && compinit
 autoload -U +X bashcompinit && bashcompinit
 source ~/bash_completions/kubie.bash
+source ~/bash_completions/complete.bash
 [[ -s "$HOME/.local/share/marker/marker.sh" ]] && source "$HOME/.local/share/marker/marker.sh"
 source $(brew --prefix)/opt/powerlevel10k/powerlevel10k.zsh-theme
 source $HOME/.oh-my-zsh/custom/plugins/fzf-tab-completion/zsh/fzf-zsh-completion.sh
