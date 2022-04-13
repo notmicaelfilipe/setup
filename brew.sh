@@ -23,6 +23,6 @@ if [ ! -d ~/bash_completions ]; then
     cp -r bash_completions ~
 fi
 
-cp ./.zshrc ~/
+cp .zshrc .p10k.zsh ~/
 
 echo "Open a new terminal" && exit
