@@ -117,7 +117,7 @@ if type brew &>/dev/null; then
     rm -f ~/.zcompdump; compinit
 fi
 
-alias cat='bat'
+alias cat=bat
 alias k=kubectl
 eval "$(thefuck --alias)"
 autoload -U +X compinit && compinit
@@ -131,3 +131,5 @@ source $(brew --prefix)/opt/powerlevel10k/powerlevel10k.zsh-theme
 export POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true
 source $HOME/.oh-my-zsh/custom/plugins/fzf-tab-completion/zsh/fzf-zsh-completion.sh
 zstyle ':completion:*' fzf-search-display true
+source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
