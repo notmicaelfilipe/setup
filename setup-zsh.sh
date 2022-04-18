@@ -33,6 +33,13 @@ else
     echo "fzf-tab-completion already installed"
 fi
 
+if [ ! -d ~/.oh-my-zsh/custom/plugins/zsh-tfswitch ]; then
+    echo "Installing zsh-tfswitch"
+    git clone https://github.com/ptavares/zsh-tfswitch.git ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-tfswitch
+else
+    echo "zsh-tfswitch already installed"
+fi
+
 if [ ! -d ~/.marker ]; then
     echo "Installing marker"
     git clone https://github.com/notmicaelfilipe/marker.git ~/.marker && ~/.marker/install.py
