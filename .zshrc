@@ -119,6 +119,9 @@ fi
 
 alias cat=bat
 alias k=kubectl
+alias dig=dog
+alias df=duf
+alias du=dust
 eval "$(thefuck --alias)"
 autoload -U +X compinit && compinit
 autoload -U +X bashcompinit && bashcompinit
