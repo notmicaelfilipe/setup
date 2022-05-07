@@ -126,8 +126,14 @@ alias curl=curlie
 eval "$(thefuck --alias)"
 autoload -U +X compinit && compinit
 autoload -U +X bashcompinit && bashcompinit
-source ~/bash_completions/kubie.bash
-source ~/bash_completions/complete.bash
+FNDIR=~/bash_completions/
+if [ -d $FNDIR ]
+then
+    for f in $FNDIR/*
+    do
+       test -x $f && source $f
+    done
+fi
 [[ -s "$HOME/.local/share/marker/marker.sh" ]] && source "$HOME/.local/share/marker/marker.sh"
 source $(brew --prefix)/opt/powerlevel10k/powerlevel10k.zsh-theme
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
