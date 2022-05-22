@@ -141,6 +141,7 @@ source $(brew --prefix)/opt/powerlevel10k/powerlevel10k.zsh-theme
 export POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true
 source $HOME/.oh-my-zsh/custom/plugins/fzf-tab-completion/zsh/fzf-zsh-completion.sh
 source $HOME/.oh-my-zsh/custom/plugins/zsh-tfswitch/zsh-tfswitch.plugin.zsh
+source $HOME/.oh-my-zsh/custom/plugins/forgit/forgit.plugin.zsh
 zstyle ':completion:*' fzf-search-display true
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

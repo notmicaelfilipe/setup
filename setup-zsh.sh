@@ -47,4 +47,11 @@ else
     echo "marker already installed"
 fi
 
+if [ ! -d ~/.oh-my-zsh/custom/plugins/forgit ]; then
+    echo "Installing forgit"
+    git clone https://github.com/wfxr/forgit.git ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/forgit
+else
+    echo "forgit already installed"
+fi
+
 ./brew.sh
