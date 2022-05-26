@@ -14,8 +14,8 @@ brew update
 brew upgrade
 
 brew install awscli gcc jq kubectl kind k9s helm bat fzf htop dive whalebrew kubie dog duf dust jesseduffield/lazydocker/lazydocker \
-homeport/tap/dyff thefuck zsh-completions romkatv/powerlevel10k/powerlevel10k pipx zsh-autosuggestions zsh-syntax-highlighting rs/tap/curlie \
-azure-cli kubectx btop homebrew/cask/session-manager-plugin proctools krew
+homeport/tap/dyff zsh-completions romkatv/powerlevel10k/powerlevel10k pipx zsh-autosuggestions zsh-syntax-highlighting rs/tap/curlie \
+azure-cli kubectx btop homebrew/cask/session-manager-plugin proctools krew watch
 /home/linuxbrew/.linuxbrew/opt/fzf/install --all
 pipx ensurepath
 pipx install aws-sso-util
