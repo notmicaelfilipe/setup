@@ -31,9 +31,9 @@ fi
 
 cp .zshrc .p10k.zsh ~/
 
-if command -v apt &> /dev/null; then
+if command -v apt &> /dev/null || command -v yum &> /dev/null || command -v dnf &> /dev/null ; then
     echo "Skipping casks install has they only work in macos"
 else
-    brew install homebrew/cask/session-manager-plugin
+    brew install homebrew/cask/session-manager-plugin homebrew/cask/flycut
 fi
 echo "Open a new terminal" && exit
