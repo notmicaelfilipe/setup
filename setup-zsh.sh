@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
 echo "Install pre-requirements"
-if command -v zsh &> /dev/null && command -v git &> /dev/null && command -v curl &> /dev/null; then
+if command -v zsh &>/dev/null && command -v git &>/dev/null && command -v curl &>/dev/null; then
     echo -e "ZSH and Git are already installed\n"
 else
-    if sudo apt update && sudo apt install -y build-essential procps curl file git zsh  || sudo brew install git zsh curl  ; then
+    if sudo apt update && sudo apt install -y build-essential procps curl file git zsh || sudo brew install git zsh curl; then
         echo -e "zsh curl and git Installed\n"
     else
         echo -e "Please install the following packages first, then try again: zsh git curl \n" && exit
@@ -17,7 +17,6 @@ if [ ! -d ~/.oh-my-zsh ]; then
 else
     echo "Ohmysh already installed"
 fi
-
 
 if [ ! -d ~/.oh-my-zsh/custom/plugins/zsh-completions ]; then
     echo "Installing zsh-completions"
