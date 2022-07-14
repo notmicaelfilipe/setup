@@ -22,6 +22,7 @@ pipx ensurepath
 pipx install aws-sso-util
 pipx ensurepath
 kubectl krew install tree
+kubectl krew install example
 helm plugin install https://github.com/databus23/helm-diff
 helm plugin install https://github.com/ContainerSolutions/helm-monitor
 
