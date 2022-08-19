@@ -23,8 +23,11 @@ pipx install aws-sso-util
 pipx ensurepath
 kubectl krew install tree
 kubectl krew install example
+kubectl krew install neat
 helm plugin install https://github.com/databus23/helm-diff
 helm plugin install https://github.com/ContainerSolutions/helm-monitor
+
+curl -Ls https://rawgit.com/kubermatic/fubectl/master/fubectl.source -O ~/bash_completions/fubectl.source
 
 if [ ! -d ~/bash_completions ]; then
     cp -r bash_completions ~

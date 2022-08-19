@@ -132,7 +132,7 @@ if [ -d $FNDIR ]
 then
     for f in $FNDIR/*
     do
-       test -x $f && source $f
+       source $f
     done
 fi
 [[ -s "$HOME/.local/share/marker/marker.sh" ]] && source "$HOME/.local/share/marker/marker.sh"
@@ -140,6 +140,7 @@ source $(brew --prefix)/opt/powerlevel10k/powerlevel10k.zsh-theme
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 export POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true
+export PATH="${PATH}:${HOME}/.krew/bin"
 source $HOME/.oh-my-zsh/custom/plugins/fzf-tab-completion/zsh/fzf-zsh-completion.sh
 source $HOME/.oh-my-zsh/custom/plugins/zsh-tfswitch/zsh-tfswitch.plugin.zsh
 source $HOME/.oh-my-zsh/custom/plugins/forgit/forgit.plugin.zsh
