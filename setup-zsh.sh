@@ -53,4 +53,11 @@ else
     echo "forgit already installed"
 fi
 
+
+if command -v apt &>/dev/null || command -v yum &>/dev/null || command -v dnf &>/dev/null; then
+    echo "Skipping configuring touchID for use with sudo has it only works in macOS"
+else
+    sed -i -- '2s/^/auth sufficient pam_tid.so\n/' /etc/pam.d/sudo
+fi
+
 ./brew.sh

@@ -13,7 +13,7 @@ fi
 brew update
 brew upgrade
 
-brew install awscli gcc jq kubectl kind k9s helm bat fzf htop dive whalebrew kubie dog duf dust jesseduffield/lazydocker/lazydocker \
+brew install awscli gcc jq kubectl kind k9s helm bat fzf htop dive kubie dog duf dust jesseduffield/lazydocker/lazydocker \
     homeport/tap/dyff zsh-completions romkatv/powerlevel10k/powerlevel10k pipx zsh-autosuggestions zsh-syntax-highlighting rs/tap/curlie \
     azure-cli kubectx btop proctools krew watch env0/terratag/terratag stern
 
@@ -36,7 +36,8 @@ fi
 cp .zshrc .p10k.zsh ~/
 
 if command -v apt &>/dev/null || command -v yum &>/dev/null || command -v dnf &>/dev/null; then
-    echo "Skipping casks install has they only work in macos"
+    echo "Skipping casks install has they only work in macOS"
+    echo "Install postman and session manager plugin manually"
 else
     brew install homebrew/cask/session-manager-plugin homebrew/cask/flycut homebrew/cask/postman
 fi
