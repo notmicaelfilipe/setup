@@ -39,6 +39,6 @@ if command -v apt &>/dev/null || command -v yum &>/dev/null || command -v dnf &>
     echo "Skipping casks install has they only work in macOS"
     echo "Install postman and session manager plugin manually"
 else
-    brew install homebrew/cask/session-manager-plugin homebrew/cask/flycut homebrew/cask/postman
+    brew install homebrew/cask/session-manager-plugin homebrew/cask/flycut homebrew/cask/postman homebrew/cask/iterm2
 fi
 echo "Open a new terminal" && exit
