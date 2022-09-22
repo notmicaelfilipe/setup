@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+set -eu
+set -o pipefail
 
 if [ ! -d /home/linuxbrew/.linuxbrew/bin ]; then
     echo "Installing brew"

@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+set -eu
+set -o pipefail
 
 echo "Install pre-requirements"
 if command -v zsh &>/dev/null && command -v git &>/dev/null && command -v curl &>/dev/null; then
@@ -57,7 +59,14 @@ fi
 if command -v apt &>/dev/null || command -v yum &>/dev/null || command -v dnf &>/dev/null; then
     echo "Skipping configuring touchID for use with sudo has it only works in macOS"
 else
-    sed -i -- '2s/^/auth sufficient pam_tid.so\n/' /etc/pam.d/sudo
+    sudo chmod +w /etc/pam.d/sudo
+    if ! grep -Eq '^auth\s.*\spam_tid\.so$' /etc/pam.d/sudo; then
+        ( set -e; set -o pipefail
+        # Add "pam_tid.so" to a first authentication
+        pam_sudo=$(awk 'fixed||!/^auth /{print} !fixed&&/^auth/{print "auth       sufficient     pam_tid.so";print;fixed=1}' /etc/pam.d/sudo)
+        sudo tee /etc/pam.d/sudo <<<"$pam_sudo"
+        )
+    fi
 fi
 
 ./brew.sh
