@@ -23,7 +23,7 @@ brew install awscli gcc jq kubectl kind k9s helm bat fzf htop dive kubie dog duf
 pipx ensurepath
 pipx install aws-sso-util
 pipx ensurepath
-kubectl krew install tree
+kubectl krew install lineage
 kubectl krew install example
 kubectl krew install neat
 helm plugin install https://github.com/databus23/helm-diff
