@@ -56,9 +56,8 @@ else
 fi
 
 
-if command -v apt &>/dev/null || command -v yum &>/dev/null || command -v dnf &>/dev/null; then
-    echo "Skipping configuring touchID for use with sudo has it only works in macOS"
-else
+OS="$(uname)"
+if [[ "${OS}" == "Darwin" ]]; then
     sudo chmod +w /etc/pam.d/sudo
     if ! grep -Eq '^auth\s.*\spam_tid\.so$' /etc/pam.d/sudo; then
         ( set -e; set -o pipefail
@@ -67,6 +66,8 @@ else
         sudo tee /etc/pam.d/sudo <<<"$pam_sudo"
         )
     fi
+else
+    echo "Skipping configuring touchID for use with sudo has it only works in macOS"
 fi
 
 ./brew.sh

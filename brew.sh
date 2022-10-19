@@ -2,15 +2,43 @@
 set -eu
 set -o pipefail
 
-if [ ! -d /home/linuxbrew/.linuxbrew/bin ]; then
+OS="$(uname)"
+if [[ "${OS}" == "Linux" ]]
+then
+  HOMEBREW_ON_LINUX=1
+elif [[ "${OS}" != "Darwin" ]]
+then
+  abort "Homebrew is only supported on macOS and Linux."
+fi
+
+if [[ -z "${HOMEBREW_ON_LINUX-}" ]]
+then
+  UNAME_MACHINE="$(/usr/bin/uname -m)"
+
+  if [[ "${UNAME_MACHINE}" == "arm64" ]]
+  then
+    # On ARM macOS, this script installs to /opt/homebrew only
+    HOMEBREW_PREFIX="/opt/homebrew"
+  else
+    # On Intel macOS, this script installs to /usr/local only
+    HOMEBREW_PREFIX="/usr/local"
+  fi
+else
+  # On Linux, it installs to /home/linuxbrew/.linuxbrew if you have sudo access
+  # and ~/.linuxbrew (which is unsupported) if run interactively.
+  HOMEBREW_PREFIX="/home/linuxbrew/.linuxbrew"
+fi
+
+if [ ! -d $HOMEBREW_PREFIX ]; then
     echo "Installing brew"
     NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-    echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >>~/.zprofile
-    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+    echo 'eval "$($HOMEBREW_PREFIX/bin/brew shellenv)"' >>~/.zprofile
+    eval "$($HOMEBREW_PREFIX/bin/brew shellenv)"
 else
     echo "Brew already installed"
-    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+    eval "$($HOMEBREW_PREFIX/bin/brew shellenv)"
 fi
+
 
 brew update
 brew upgrade
@@ -38,10 +66,13 @@ fi
 
 cp .zshrc .p10k.zsh ~/
 
-if command -v apt &>/dev/null || command -v yum &>/dev/null || command -v dnf &>/dev/null; then
+OS="$(uname)"
+if [[ "${OS}" != "Darwin" ]]; then
     echo "Skipping casks install has they only work in macOS"
-    echo "Install postman and session manager plugin manually"
+    echo "Install postman, session manager plugin, vscode manually"
 else
-    brew install homebrew/cask/session-manager-plugin homebrew/cask/flycut homebrew/cask/postman homebrew/cask/iterm2
+    # gawk required for https://github.com/lincheney/fzf-tab-completion on macOS
+    brew install homebrew/cask/session-manager-plugin homebrew/cask/flycut homebrew/cask/postman homebrew/cask/iterm2 homebrew/cask/visual-studio-code gawk
 fi
-echo "Open a new terminal" && exit
+echo "Open a new terminal"
+exit
