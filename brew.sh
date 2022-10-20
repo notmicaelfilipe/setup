@@ -58,7 +58,7 @@ kubectl krew install explore
 helm plugin install https://github.com/databus23/helm-diff
 helm plugin install https://github.com/ContainerSolutions/helm-monitor
 
-curl -Ls https://rawgit.com/kubermatic/fubectl/master/fubectl.source -O ~/bash_completions/fubectl.source
+curl -Ls https://rawgit.com/kubermatic/fubectl/master/fubectl.source -o ~/bash_completions/fubectl.source
 
 if [ ! -d ~/bash_completions ]; then
     cp -r bash_completions ~

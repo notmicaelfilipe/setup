@@ -70,4 +70,4 @@ else
     echo "Skipping configuring touchID for use with sudo has it only works in macOS"
 fi
 
-./brew.sh
+bash ./brew.sh
