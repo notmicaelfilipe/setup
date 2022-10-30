@@ -72,7 +72,8 @@ if [[ "${OS}" != "Darwin" ]]; then
     echo "Install postman, session manager plugin, vscode manually"
 else
     # gawk required for https://github.com/lincheney/fzf-tab-completion on macOS
-    brew install homebrew/cask/session-manager-plugin homebrew/cask/flycut homebrew/cask/postman homebrew/cask/iterm2 homebrew/cask/visual-studio-code gawk proctools
+    brew install homebrew/cask/session-manager-plugin homebrew/cask/postman homebrew/cask/iterm2 homebrew/cask/visual-studio-code gawk proctools
+    echo "install flycut manually"
 fi
 echo "Open a new terminal"
 exit
