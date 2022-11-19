@@ -66,6 +66,9 @@ fi
 
 cp .zshrc .p10k.zsh ~/
 
+git config --global core.excludesfile ~/.gitignore
+
+
 OS="$(uname)"
 if [[ "${OS}" != "Darwin" ]]; then
     echo "Skipping casks install has they only work in macOS"
