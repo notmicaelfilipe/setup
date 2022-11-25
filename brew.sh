@@ -64,7 +64,7 @@ if [ ! -d ~/bash_completions ]; then
     cp -r bash_completions ~
 fi
 
-cp .zshrc .p10k.zsh ~/
+cp .zshrc .p10k.zsh .gitignore ~/
 
 git config --global core.excludesfile ~/.gitignore
 
