@@ -117,7 +117,7 @@ if type brew &>/dev/null; then
     rm -f ~/.zcompdump; compinit
 fi
 
-alias cat=bat
+alias cat='bat --paging=never' 
 alias k=kubectl
 alias dig=dog
 alias df=duf
