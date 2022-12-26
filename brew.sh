@@ -55,6 +55,8 @@ kubectl krew install lineage
 kubectl krew install example
 kubectl krew install neat
 kubectl krew install explore
+kubectl krew install ingress-nginx
+kubectl krew install cert-manager
 helm plugin install https://github.com/databus23/helm-diff
 helm plugin install https://github.com/ContainerSolutions/helm-monitor
 
