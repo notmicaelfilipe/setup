@@ -3,20 +3,16 @@ set -eu
 set -o pipefail
 
 OS="$(uname)"
-if [[ "${OS}" == "Linux" ]]
-then
+if [[ "${OS}" == "Linux" ]]; then
   HOMEBREW_ON_LINUX=1
-elif [[ "${OS}" != "Darwin" ]]
-then
+elif [[ "${OS}" != "Darwin" ]]; then
   abort "Homebrew is only supported on macOS and Linux."
 fi
 
-if [[ -z "${HOMEBREW_ON_LINUX-}" ]]
-then
+if [[ -z "${HOMEBREW_ON_LINUX-}" ]]; then
   UNAME_MACHINE="$(/usr/bin/uname -m)"
 
-  if [[ "${UNAME_MACHINE}" == "arm64" ]]
-  then
+  if [[ "${UNAME_MACHINE}" == "arm64" ]]; then
     # On ARM macOS, this script installs to /opt/homebrew only
     HOMEBREW_PREFIX="/opt/homebrew"
   else
@@ -30,22 +26,21 @@ else
 fi
 
 if [ ! -d $HOMEBREW_PREFIX ]; then
-    echo "Installing brew"
-    NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-    echo 'eval "$($HOMEBREW_PREFIX/bin/brew shellenv)"' >>~/.zprofile
-    eval "$($HOMEBREW_PREFIX/bin/brew shellenv)"
+  echo "Installing brew"
+  NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  echo 'eval "$($HOMEBREW_PREFIX/bin/brew shellenv)"' >>~/.zprofile
+  eval "$($HOMEBREW_PREFIX/bin/brew shellenv)"
 else
-    echo "Brew already installed"
-    eval "$($HOMEBREW_PREFIX/bin/brew shellenv)"
+  echo "Brew already installed"
+  eval "$($HOMEBREW_PREFIX/bin/brew shellenv)"
 fi
-
 
 brew update
 brew upgrade
 
 brew install awscli gcc jq kubectl kind k9s helm bat fzf htop dive kubie dog duf dust jesseduffield/lazydocker/lazydocker \
-    homeport/tap/dyff zsh-completions romkatv/powerlevel10k/powerlevel10k pipx zsh-autosuggestions zsh-syntax-highlighting rs/tap/curlie \
-    azure-cli kubectx btop krew watch env0/terratag/terratag stern
+  homeport/tap/dyff zsh-completions romkatv/powerlevel10k/powerlevel10k pipx zsh-autosuggestions zsh-syntax-highlighting rs/tap/curlie \
+  kubectx btop krew watch env0/terratag/terratag stern
 
 "$HOMEBREW_PREFIX/opt/fzf/install" --all
 pipx ensurepath
@@ -62,23 +57,24 @@ helm plugin install https://github.com/ContainerSolutions/helm-monitor
 
 curl -Ls https://rawgit.com/kubermatic/fubectl/master/fubectl.source -o ~/bash_completions/fubectl.source
 
+pip3 install awscli-local
+
 if [ ! -d ~/bash_completions ]; then
-    cp -r bash_completions ~
+  cp -r bash_completions ~
 fi
 
 cp .zshrc .p10k.zsh .gitignore ~/
 
 git config --global core.excludesfile ~/.gitignore
 
-
 OS="$(uname)"
 if [[ "${OS}" != "Darwin" ]]; then
-    echo "Skipping casks install has they only work in macOS"
-    echo "Install postman, session manager plugin, vscode manually"
+  echo "Skipping casks install has they only work in macOS"
+  echo "Install postman, session manager plugin, vscode manually"
 else
-    # gawk required for https://github.com/lincheney/fzf-tab-completion on macOS
-    brew install homebrew/cask/session-manager-plugin homebrew/cask/postman homebrew/cask/iterm2 homebrew/cask/visual-studio-code gawk proctools
-    echo "install flycut manually"
+  # gawk required for https://github.com/lincheney/fzf-tab-completion on macOS
+  brew install homebrew/cask/session-manager-plugin homebrew/cask/postman homebrew/cask/iterm2 homebrew/cask/visual-studio-code gawk proctools
+  echo "install flycut manually"
 fi
 echo "Open a new terminal"
 exit

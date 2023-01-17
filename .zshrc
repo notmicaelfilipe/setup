@@ -77,7 +77,7 @@ zstyle ':omz:update' frequency 13
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git aws helm kubectl zsh-interactive-cd zsh-completions)
+plugins=(dotenv git aws helm kubectl zsh-interactive-cd zsh-completions)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -152,3 +152,7 @@ install-metrics-server(){
     helm repo add metrics-server https://kubernetes-sigs.github.io/metrics-server/
     helm upgrade --install metrics-server metrics-server/metrics-server --set args={"--kubelet-insecure-tls"} --namespace kube-system
 }
+
+export BUILDKIT_PROGRESS=plain
+complete -C aws_completer awslocal
+export ZSH_DOTENV_PROMPT=false
