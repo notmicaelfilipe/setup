@@ -156,3 +156,4 @@ install-metrics-server(){
 export BUILDKIT_PROGRESS=plain
 complete -C aws_completer awslocal
 export ZSH_DOTENV_PROMPT=false
+export AWS_CLI_AUTO_PROMPT=on
