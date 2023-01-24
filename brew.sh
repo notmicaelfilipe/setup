@@ -52,6 +52,7 @@ kubectl krew install neat
 kubectl krew install explore
 kubectl krew install ingress-nginx
 kubectl krew install cert-manager
+kubectl krew install rbac-tool
 helm plugin install https://github.com/databus23/helm-diff
 helm plugin install https://github.com/ContainerSolutions/helm-monitor
 
