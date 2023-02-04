@@ -53,6 +53,10 @@ kubectl krew install explore
 kubectl krew install ingress-nginx
 kubectl krew install cert-manager
 kubectl krew install rbac-tool
+kubectl krew install access-matrix
+kubectl krew install rolesum
+kubectl krew install np-viewer
+kubectl krew install gadget
 helm plugin install https://github.com/databus23/helm-diff
 helm plugin install https://github.com/ContainerSolutions/helm-monitor
 
