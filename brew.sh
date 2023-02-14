@@ -57,6 +57,7 @@ kubectl krew install access-matrix
 kubectl krew install rolesum
 kubectl krew install np-viewer
 kubectl krew install gadget
+kubectl krew install who-can
 helm plugin install https://github.com/databus23/helm-diff
 helm plugin install https://github.com/ContainerSolutions/helm-monitor
 
