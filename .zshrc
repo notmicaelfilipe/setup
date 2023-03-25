@@ -153,6 +153,22 @@ install-metrics-server(){
     helm upgrade --install metrics-server metrics-server/metrics-server --set args={"--kubelet-insecure-tls"} --namespace kube-system
 }
 
+setup-sudo-touchID(){
+    OS="$(uname)"
+    if [[ "${OS}" == "Darwin" ]]; then
+        sudo chmod +w /etc/pam.d/sudo
+        if ! grep -Eq '^auth\s.*\spam_tid\.so$' /etc/pam.d/sudo; then
+            ( set -e; set -o pipefail
+            # Add "pam_tid.so" to a first authentication
+            pam_sudo=$(awk 'fixed||!/^auth /{print} !fixed&&/^auth/{print "auth       sufficient     pam_tid.so";print;fixed=1}' /etc/pam.d/sudo)
+            sudo tee /etc/pam.d/sudo <<<"$pam_sudo"
+            )
+        fi
+    else
+        echo "Skipping configuring touchID for use with sudo has it only works in macOS"
+    fi
+}
+
 export BUILDKIT_PROGRESS=plain
 complete -C aws_completer awslocal
 export ZSH_DOTENV_PROMPT=false
