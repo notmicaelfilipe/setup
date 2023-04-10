@@ -168,7 +168,7 @@ setup-sudo-touchID(){
         echo "Skipping configuring touchID for use with sudo has it only works in macOS"
     fi
 }
-
+source <(kubectl completion zsh)
 export BUILDKIT_PROGRESS=plain
 complete -C aws_completer awslocal
 export ZSH_DOTENV_PROMPT=false
