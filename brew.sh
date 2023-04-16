@@ -41,6 +41,8 @@ brew upgrade
 brew install awscli gcc jq kubectl kind k9s helm bat fzf htop dive kubie dog duf dust jesseduffield/lazydocker/lazydocker \
   homeport/tap/dyff zsh-completions romkatv/powerlevel10k/powerlevel10k pipx zsh-autosuggestions zsh-syntax-highlighting rs/tap/curlie \
   kubectx btop krew watch env0/terratag/terratag stern
+brew install notmicaelfilipe/tap/kuberlr --overwrite
+brew install notmicaelfilipe/tap/kubectl-netshoot
 
 "$HOMEBREW_PREFIX/opt/fzf/install" --all
 pipx ensurepath
