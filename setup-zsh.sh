@@ -22,21 +22,21 @@ fi
 
 if [ ! -d ~/.oh-my-zsh/custom/plugins/zsh-completions ]; then
     echo "Installing zsh-completions"
-    git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-completions
+    git clone https://github.com/zsh-users/zsh-completions "${ZSH_CUSTOM:=~/.oh-my-zsh/custom}"/plugins/zsh-completions
 else
     echo "zsh-completions already installed"
 fi
 
 if [ ! -d ~/.oh-my-zsh/custom/plugins/fzf-tab-completion ]; then
     echo "Installing fzf-tab-completion"
-    git clone https://github.com/lincheney/fzf-tab-completion.git ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/fzf-tab-completion
+    git clone https://github.com/lincheney/fzf-tab-completion.git "${ZSH_CUSTOM:=~/.oh-my-zsh/custom}"/plugins/fzf-tab-completion
 else
     echo "fzf-tab-completion already installed"
 fi
 
 if [ ! -d ~/.oh-my-zsh/custom/plugins/zsh-tfswitch ]; then
     echo "Installing zsh-tfswitch"
-    git clone https://github.com/ptavares/zsh-tfswitch.git ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-tfswitch
+    git clone https://github.com/ptavares/zsh-tfswitch.git "${ZSH_CUSTOM:=~/.oh-my-zsh/custom}"/plugins/zsh-tfswitch
 else
     echo "zsh-tfswitch already installed"
 fi
@@ -50,9 +50,16 @@ fi
 
 if [ ! -d ~/.oh-my-zsh/custom/plugins/forgit ]; then
     echo "Installing forgit"
-    git clone https://github.com/wfxr/forgit.git ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/forgit
+    git clone https://github.com/wfxr/forgit.git "${ZSH_CUSTOM:=~/.oh-my-zsh/custom}"/plugins/forgit
 else
     echo "forgit already installed"
+fi
+
+if [ ! -d ~/.oh-my-zsh/custom/plugins/jq ]; then
+    echo "Installing ohmyzsh jq plugin"
+    git clone https://github.com/reegnz/jq-zsh-plugin.git "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}"/plugins/jq
+else
+    echo "ohmyzsh jq plugin already installed"
 fi
 
 

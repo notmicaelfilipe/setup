@@ -77,7 +77,7 @@ zstyle ':omz:update' frequency 13
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(dotenv git aws helm kubectl zsh-interactive-cd zsh-completions)
+plugins=(dotenv git aws gcloud helm kubectl zsh-interactive-cd zsh-completions jq)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -117,7 +117,7 @@ if type brew &>/dev/null; then
     rm -f ~/.zcompdump; compinit
 fi
 
-alias cat='bat --paging=never' 
+alias cat='bat --paging=never'
 alias k=kubectl
 alias dig=dog
 alias df=duf
@@ -173,3 +173,4 @@ export BUILDKIT_PROGRESS=plain
 complete -C aws_completer awslocal
 export ZSH_DOTENV_PROMPT=false
 export AWS_CLI_AUTO_PROMPT=on
+bindkey "^j" jq-complete
