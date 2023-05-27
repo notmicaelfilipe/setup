@@ -40,7 +40,7 @@ brew upgrade
 
 brew install awscli gcc jq kubectl kind k9s helm bat fzf htop dive kubie dog duf dust jesseduffield/lazydocker/lazydocker \
   homeport/tap/dyff zsh-completions romkatv/powerlevel10k/powerlevel10k pipx zsh-autosuggestions zsh-syntax-highlighting rs/tap/curlie \
-  kubectx btop krew watch env0/terratag/terratag stern
+  kubectx btop krew watch env0/terratag/terratag stern git-delta
 brew install notmicaelfilipe/tap/kuberlr --overwrite
 brew install notmicaelfilipe/tap/kubectl-netshoot
 
@@ -71,7 +71,7 @@ if [ ! -d ~/bash_completions ]; then
   cp -r bash_completions ~
 fi
 
-cp .zshrc .p10k.zsh .gitignore ~/
+cp .zshrc .p10k.zsh .gitignore .gitconfig ~/
 
 git config --global core.excludesfile ~/.gitignore
 
