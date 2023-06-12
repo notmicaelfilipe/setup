@@ -28,7 +28,24 @@ fi
 if [ ! -d $HOMEBREW_PREFIX ]; then
   echo "Installing brew"
   NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-  echo 'eval "$($HOMEBREW_PREFIX/bin/brew shellenv)"' >>~/.zprofile
+  if [[ -z "${HOMEBREW_ON_LINUX-}" ]]; then
+  UNAME_MACHINE="$(/usr/bin/uname -m)"
+
+  if [[ "${UNAME_MACHINE}" == "arm64" ]]; then
+    # On ARM macOS, this script installs to /opt/homebrew only
+    HOMEBREW_PREFIX="/opt/homebrew"
+    echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >>~/.zprofile
+  else
+    # On Intel macOS, this script installs to /usr/local only
+    HOMEBREW_PREFIX="/usr/local"
+    echo 'eval "$(/usr/local/bin/brew shellenv)"' >>~/.zprofile
+  fi
+  else
+    # On Linux, it installs to /home/linuxbrew/.linuxbrew if you have sudo access
+    # and ~/.linuxbrew (which is unsupported) if run interactively.
+    HOMEBREW_PREFIX="/home/linuxbrew/.linuxbrew"
+    echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >>~/.zprofile
+  fi
   eval "$($HOMEBREW_PREFIX/bin/brew shellenv)"
 else
   echo "Brew already installed"
