@@ -86,6 +86,6 @@ else
   echo "install flycut manually"
 fi
 echo "Change default shell to zsh"
-chsh -s "$(which zsh)"
+sudo chsh -s "$(which zsh)"
 echo "Open a new terminal"
 exit

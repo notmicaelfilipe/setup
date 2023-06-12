@@ -77,6 +77,6 @@ else
     echo "Skipping configuring touchID for use with sudo has it only works in macOS"
 fi
 
-cp -f ./kubectl-net_forward /usr/local/bin
+sudo cp -f ./kubectl-net_forward /usr/local/bin
 
 bash ./brew.sh
