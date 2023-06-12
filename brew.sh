@@ -86,7 +86,5 @@ else
   brew install homebrew/cask/session-manager-plugin homebrew/cask/postman homebrew/cask/iterm2 homebrew/cask/visual-studio-code gawk proctools
   echo "install flycut manually"
 fi
-echo "Change default shell to zsh"
-chsh -s "$(which zsh)"
 echo "Open a new terminal"
 exit
