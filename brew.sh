@@ -72,6 +72,7 @@ fi
 
 curl -Ls https://rawgit.com/kubermatic/fubectl/master/fubectl.source -o ~/bash_completions/fubectl.source
 
+sudo cp -f ./kubectl-net_forward /usr/local/bin
 cp .zshrc .p10k.zsh .gitignore .gitconfig ~/
 
 git config --global core.excludesfile ~/.gitignore
@@ -86,6 +87,6 @@ else
   echo "install flycut manually"
 fi
 echo "Change default shell to zsh"
-sudo chsh -s "$(which zsh)"
+chsh -s "$(which zsh)"
 echo "Open a new terminal"
 exit
