@@ -15,7 +15,7 @@ fi
 
 if [ ! -d ~/.oh-my-zsh ]; then
     echo "Installing ohmyzsh"
-    sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 else
     echo "Ohmysh already installed"
 fi
