@@ -57,7 +57,7 @@ fi
 
 if [ ! -d ~/.oh-my-zsh/custom/plugins/jq ]; then
     echo "Installing ohmyzsh jq plugin"
-    git clone https://github.com/reegnz/jq-zsh-plugin.git "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}"/plugins/jq
+    git clone https://github.com/reegnz/jq-zsh-plugin.git "${ZSH_CUSTOM:=~/.oh-my-zsh/custom}"/plugins/jq
 else
     echo "ohmyzsh jq plugin already installed"
 fi
