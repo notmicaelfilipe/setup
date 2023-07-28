@@ -123,6 +123,7 @@ alias dig=dog
 alias df=duf
 alias du=dust
 alias curl=curlie
+alias diff=delta
 eval "$(thefuck --alias)"
 autoload -U +X compinit && compinit
 autoload -U +X bashcompinit && bashcompinit
