@@ -41,6 +41,13 @@ else
     echo "zsh-tfswitch already installed"
 fi
 
+if [ ! -d ~/.oh-my-zsh/custom/plugins/fast-syntax-highlighting ]; then
+    echo "Installing fast-syntax-highlighting"
+    git clone https://github.com/zdharma-continuum/fast-syntax-highlighting.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/fast-syntax-highlighting
+else
+    echo "fast-syntax-highlighting already installed"
+fi
+
 if [ ! -d ~/.marker ]; then
     echo "Installing marker"
     git clone https://github.com/notmicaelfilipe/marker.git ~/.marker && ~/.marker/install.py

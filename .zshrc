@@ -77,7 +77,7 @@ zstyle ':omz:update' frequency 13
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(dotenv git aws gcloud helm kubectl zsh-interactive-cd zsh-completions jq)
+plugins=(dotenv git aws gcloud helm kubectl zsh-interactive-cd zsh-completions jq fast-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -147,7 +147,6 @@ source $HOME/.oh-my-zsh/custom/plugins/zsh-tfswitch/zsh-tfswitch.plugin.zsh
 source $HOME/.oh-my-zsh/custom/plugins/forgit/forgit.plugin.zsh
 zstyle ':completion:*' fzf-search-display true
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 install-metrics-server(){
     helm repo add metrics-server https://kubernetes-sigs.github.io/metrics-server/
