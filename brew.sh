@@ -57,7 +57,7 @@ brew upgrade
 
 brew install awscli gcc jq kubectl kind k9s helm bat fzf htop dive kubie dog duf dust jesseduffield/lazydocker/lazydocker \
   homeport/tap/dyff zsh-completions romkatv/powerlevel10k/powerlevel10k pipx zsh-autosuggestions rs/tap/curlie \
-  kubectx btop krew watch env0/terratag/terratag stern git-delta thefuck
+  kubectx btop krew watch env0/terratag/terratag stern git-delta thefuck viddy
 brew install notmicaelfilipe/tap/kuberlr --overwrite
 brew install notmicaelfilipe/tap/kubectl-netshoot
 
