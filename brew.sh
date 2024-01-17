@@ -59,7 +59,6 @@ brew install awscli gcc jq kubectl kind k9s helm bat fzf htop dive kubie dog duf
   homeport/tap/dyff zsh-completions romkatv/powerlevel10k/powerlevel10k pipx zsh-autosuggestions rs/tap/curlie \
   kubectx btop krew watch env0/terratag/terratag stern git-delta thefuck viddy
 brew install notmicaelfilipe/tap/kuberlr --overwrite
-brew install notmicaelfilipe/tap/kubectl-netshoot
 
 "$HOMEBREW_PREFIX/opt/fzf/install" --all
 pipx ensurepath
@@ -82,7 +81,8 @@ kubectl krew search eks
 kubectl krew install surajincloud/kubectl-eks
 helm plugin install https://github.com/databus23/helm-diff
 helm plugin install https://github.com/ContainerSolutions/helm-monitor
-
+kubectl krew index add netshoot https://github.com/nilic/kubectl-netshoot.git
+kubectl krew install netshoot/netshoot
 
 pip3 install awscli-local
 
