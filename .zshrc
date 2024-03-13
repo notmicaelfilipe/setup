@@ -172,7 +172,7 @@ function setup-sudo-touchID(){
 function sync-fork(){
     REPO=$(pwd | awk '{n=split($1,A,"/"); print "mfilipe-te/"A[n]}')
     echo "Syncing fork: {$REPO}"
-    gh repo sync "$REPO"
+    gh repo sync "$REPO" || echo "Requires GitHub Cli"
     git pull
 }
 
