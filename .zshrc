@@ -148,12 +148,12 @@ source $HOME/.oh-my-zsh/custom/plugins/forgit/forgit.plugin.zsh
 zstyle ':completion:*' fzf-search-display true
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
-install-metrics-server(){
+function install-metrics-server(){
     helm repo add metrics-server https://kubernetes-sigs.github.io/metrics-server/
     helm upgrade --install metrics-server metrics-server/metrics-server --set args={"--kubelet-insecure-tls"} --namespace kube-system
 }
 
-setup-sudo-touchID(){
+function setup-sudo-touchID(){
     OS="$(uname)"
     if [[ "${OS}" == "Darwin" ]]; then
         sudo chmod +w /etc/pam.d/sudo
@@ -168,6 +168,15 @@ setup-sudo-touchID(){
         echo "Skipping configuring touchID for use with sudo has it only works in macOS"
     fi
 }
+
+function sync-fork(){
+    REPO=$(pwd | awk '{n=split($1,A,"/"); print "mfilipe-te/"A[n]}')
+    echo "Syncing fork: {$REPO}"
+    gh repo sync "$REPO"
+    git pull
+}
+
+
 source <(kubectl completion zsh)
 export BUILDKIT_PROGRESS=plain
 complete -C aws_completer awslocal
