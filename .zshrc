@@ -127,7 +127,6 @@ alias diff=delta
 eval "$(thefuck --alias)"
 autoload -U +X compinit && compinit
 autoload -U +X bashcompinit && bashcompinit
-eval "$(register-python-argcomplete pipx)"
 FNDIR=~/bash_completions/
 if [ -d $FNDIR ]
 then
