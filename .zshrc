@@ -168,13 +168,6 @@ function setup-sudo-touchID(){
     fi
 }
 
-function sync-fork(){
-    REPO=$(pwd | awk '{n=split($1,A,"/"); print "mfilipe-te/"A[n]}')
-    echo "Syncing fork: {$REPO}"
-    gh repo sync "$REPO" || echo "Requires GitHub Cli"
-    git pull
-}
-
 
 source <(kubectl completion zsh)
 export BUILDKIT_PROGRESS=plain
@@ -182,3 +175,77 @@ complete -C aws_completer awslocal
 export ZSH_DOTENV_PROMPT=false
 export AWS_CLI_AUTO_PROMPT=on
 bindkey "^j" jq-complete
+
+export ZSH_DOTENV_PROMPT=false
+
+# requires github cli
+# brew install gh
+function tag-created-date {
+  if [ $# -lt  1 ]; then
+    >&2 echo "Usage: $0 <tag-name> [repo-name]"
+    return 1
+  fi
+
+  local tag="$1"
+  local repo="$2"
+  if [ -z "$repo" ]; then
+    repo=$(git remote get-url upstream | awk -F : '{ print substr($2, 1, length($2) - 4) }')
+  elif [[ ! "$repo" =~ "/" ]]; then
+    repo="thousandeyes/$repo"
+  fi
+
+  local url=$(gh api /repos/$repo/git/refs/tags/$tag | jq --raw-output '.url[22:]')
+  local tagUrl=$(gh api $url | jq --raw-output '.object.url')
+
+  gh api $tagUrl | jq --raw-output '.tagger.date'
+}
+
+# requires github cli
+# brew install gh
+function pr-merged-date {
+  if [ $# -lt  1 ]; then
+    >&2 echo "Usage: $0 <pr-number> [repo-name]"
+    return 1
+  fi
+
+  local pr="$1"
+  local repo="$2"
+  if [ -z "$repo" ]; then
+    # assumes ssh url
+    repo=$(git remote get-url upstream | awk -F : '{ print substr($2, 1, length($2) - 4) }')
+  elif [[ ! "$repo" =~ "/" ]]; then
+    repo="thousandeyes/$repo"
+  fi
+
+  gh api /repos/$repo/pulls/$pr | jq --raw-output '.merged_at'
+}
+
+# requires gnu coreutils
+# brew install coreutils
+function human-readable-date {
+  if [ $# -ne 1 ]; then
+    >&2 echo "Usage: $0 <date-string>"
+    return 1
+  fi
+
+  gdate --date "$1" +"%B %d, %Y %H:%M:%S"
+}
+
+# requires kustomize
+# brew install kustomize
+function kb(){
+    if [ $# -ne 1 ]; then
+    >&2 echo "Usage: $0 <path>"
+    return 1
+  fi
+  kustomize build $1 --enable-alpha-plugins --load-restrictor LoadRestrictionsNone
+}
+
+# requires github cli
+# brew install gh
+function sync-fork {
+    REPO=$(pwd | awk '{n=split($1,A,"/"); print "<>/"A[n]}')
+    echo "Syncing fork: ${REPO}"
+    gh repo sync "$REPO"
+    git pull
+}
