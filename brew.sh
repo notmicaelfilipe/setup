@@ -101,6 +101,10 @@ OS="$(uname)"
 if [[ "${OS}" != "Darwin" ]]; then
   echo "Skipping casks install has they only work in macOS"
   echo "Install postman, session manager plugin, vscode manually"
+  echo "Installing xsel and adding pbcopy/pbpaste aliases"
+  brew install xsel
+  echo "alias pbcopy='xsel --input --clipboard'" >> ~/.zshrc
+  echo "alias pbpaste='xsel --output --clipboard'" >> ~/.zshrc
 else
   # gawk required for https://github.com/lincheney/fzf-tab-completion on macOS
   brew install homebrew/cask/session-manager-plugin homebrew/cask/postman homebrew/cask/iterm2 homebrew/cask/visual-studio-code gawk proctools
