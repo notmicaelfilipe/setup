@@ -83,6 +83,7 @@ helm plugin install https://github.com/databus23/helm-diff
 helm plugin install https://github.com/ContainerSolutions/helm-monitor
 kubectl krew index add netshoot https://github.com/nilic/kubectl-netshoot.git
 kubectl krew install netshoot/netshoot
+kubectl krew install podevents
 
 pip3 install awscli-local
 
