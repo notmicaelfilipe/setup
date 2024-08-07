@@ -148,24 +148,24 @@ zstyle ':completion:*' fzf-search-display true
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 function install-metrics-server(){
-    helm repo add metrics-server https://kubernetes-sigs.github.io/metrics-server/
-    helm upgrade --install metrics-server metrics-server/metrics-server --set args={"--kubelet-insecure-tls"} --namespace kube-system
+  helm repo add metrics-server https://kubernetes-sigs.github.io/metrics-server/
+  helm upgrade --install metrics-server metrics-server/metrics-server --set args={"--kubelet-insecure-tls"} --namespace kube-system
 }
 
 function setup-sudo-touchID(){
-    OS="$(uname)"
-    if [[ "${OS}" == "Darwin" ]]; then
-        sudo chmod +w /etc/pam.d/sudo
-        if ! grep -Eq '^auth\s.*\spam_tid\.so$' /etc/pam.d/sudo; then
-            ( set -e; set -o pipefail
-            # Add "pam_tid.so" to a first authentication
-            pam_sudo=$(awk 'fixed||!/^auth /{print} !fixed&&/^auth/{print "auth       sufficient     pam_tid.so";print;fixed=1}' /etc/pam.d/sudo)
-            sudo tee /etc/pam.d/sudo <<<"$pam_sudo"
-            )
-        fi
-    else
-        echo "Skipping configuring touchID for use with sudo has it only works in macOS"
+  OS="$(uname)"
+  if [[ "${OS}" == "Darwin" ]]; then
+    sudo chmod +w /etc/pam.d/sudo
+    if ! grep -Eq '^auth\s.*\spam_tid\.so$' /etc/pam.d/sudo; then
+        ( set -e; set -o pipefail
+        # Add "pam_tid.so" to a first authentication
+        pam_sudo=$(awk 'fixed||!/^auth /{print} !fixed&&/^auth/{print "auth       sufficient     pam_tid.so";print;fixed=1}' /etc/pam.d/sudo)
+        sudo tee /etc/pam.d/sudo <<<"$pam_sudo"
+        )
     fi
+  else
+      echo "Skipping configuring touchID for use with sudo has it only works in macOS"
+  fi
 }
 
 
@@ -216,7 +216,6 @@ function pr-merged-date {
   elif [[ ! "$repo" =~ "/" ]]; then
     repo="thousandeyes/$repo"
   fi
-
   gh api /repos/$repo/pulls/$pr | jq --raw-output '.merged_at'
 }
 
@@ -227,14 +226,13 @@ function human-readable-date {
     >&2 echo "Usage: $0 <date-string>"
     return 1
   fi
-
   gdate --date "$1" +"%B %d, %Y %H:%M:%S"
 }
 
 # requires kustomize
 # brew install kustomize
 function kb(){
-    if [ $# -ne 1 ]; then
+  if [ $# -ne 1 ]; then
     >&2 echo "Usage: $0 <path>"
     return 1
   fi
@@ -244,8 +242,18 @@ function kb(){
 # requires github cli
 # brew install gh
 function sync-fork {
-    REPO=$(pwd | awk '{n=split($1,A,"/"); print "<>/"A[n]}')
-    echo "Syncing fork: ${REPO}"
-    gh repo sync "$REPO"
-    git pull
+  REPO=$(pwd | awk '{n=split($1,A,"/"); print "<>/"A[n]}')
+  echo "Syncing fork: ${REPO}"
+  gh repo sync "$REPO"
+  git pull
+}
+
+exercism () {
+  local out
+  out=("${(@f)$(command exercism "$@")}")
+  printf '%s\n' "${out[@]}"
+  if [[ $1 == "download" && -d "${out[-1]}" ]]
+  then
+    cd "${out[-1]}" || return 1
+  fi
 }
