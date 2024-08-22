@@ -124,6 +124,7 @@ alias df=duf
 alias du=dust
 alias curl=curlie
 alias diff=delta
+alias watch=viddy
 eval "$(thefuck --alias)"
 autoload -U +X compinit && compinit
 autoload -U +X bashcompinit && bashcompinit
