@@ -119,7 +119,6 @@ fi
 
 alias cat='bat --paging=never'
 alias k=kubectl
-alias dig=dog
 alias df=duf
 alias du=dust
 alias curl=curlie
