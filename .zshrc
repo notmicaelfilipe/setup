@@ -141,6 +141,7 @@ source $(brew --prefix)/opt/powerlevel10k/share/powerlevel10k/powerlevel10k.zsh-
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 export POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true
 export PATH="${PATH}:${HOME}/.krew/bin"
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 source $HOME/.oh-my-zsh/custom/plugins/fzf-tab-completion/zsh/fzf-zsh-completion.sh
 source $HOME/.oh-my-zsh/custom/plugins/zsh-tfswitch/zsh-tfswitch.plugin.zsh
 source $HOME/.oh-my-zsh/custom/plugins/forgit/forgit.plugin.zsh
