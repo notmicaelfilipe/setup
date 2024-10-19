@@ -258,3 +258,4 @@ exercism () {
     cd "${out[-1]}" || return 1
   fi
 }
+
