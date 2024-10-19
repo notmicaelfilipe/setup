@@ -81,7 +81,7 @@ kubectl krew index add netshoot https://github.com/nilic/kubectl-netshoot.git
 kubectl krew install netshoot/netshoot
 kubectl krew install podevents
 
-pip3 install awscli-local
+pipx install awscli-local
 
 if [ ! -d ~/bash_completions ]; then
   cp -r bash_completions ~
