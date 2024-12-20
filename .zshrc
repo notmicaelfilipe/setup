@@ -144,6 +144,7 @@ alias curl=curlie
 alias diff=delta
 alias watch=viddy
 eval "$(thefuck --alias)"
+eval "$(atuin init zsh)"
 zstyle ':completion:*' fzf-search-display true
 # force zsh not to show completion menu, which allows fzf-tab to capture the unambiguous prefix
 zstyle ':completion:*' menu no
