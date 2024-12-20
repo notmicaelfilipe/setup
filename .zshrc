@@ -197,7 +197,6 @@ complete -C aws_completer awslocal
 export ZSH_DOTENV_PROMPT=false
 export AWS_CLI_AUTO_PROMPT=on
 bindkey "^j" jq-complete
-eval "$(fzf --zsh)"
 export ZSH_DOTENV_PROMPT=false
 
 # requires github cli
@@ -270,7 +269,7 @@ function sync-fork {
   git pull
 }
 
-exercism () {
+function exercism () {
   local out
   out=("${(@f)$(command exercism "$@")}")
   printf '%s\n' "${out[@]}"
