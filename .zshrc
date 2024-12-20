@@ -147,8 +147,6 @@ eval "$(thefuck --alias)"
 zstyle ':completion:*' fzf-search-display true
 # force zsh not to show completion menu, which allows fzf-tab to capture the unambiguous prefix
 zstyle ':completion:*' menu no
-# preview directory's content with ls when completing cd
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 autoload -U +X compinit && compinit
 autoload -U +X bashcompinit && bashcompinit
 FNDIR=~/bash_completions/
