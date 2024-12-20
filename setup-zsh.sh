@@ -69,6 +69,13 @@ else
     echo "ohmyzsh jq plugin already installed"
 fi
 
+if [ ! -d ~/.oh-my-zsh/custom/plugins/fzf-tab ]; then
+    echo "Installing ohmyzsh fzf-tab plugin"
+    git clone https://github.com/Aloxaf/fzf-tab ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/fzf-tab
+else
+    echo "ohmyzsh fzf-tab plugin already installed"
+fi
+
 
 OS="$(uname)"
 if [[ "${OS}" == "Darwin" ]]; then

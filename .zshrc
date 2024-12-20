@@ -5,6 +5,11 @@
     source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
  fi
 
+if [[ -f "/opt/homebrew/bin/brew" ]] then
+  # If you're using macOS, you'll want this enabled
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -69,6 +74,20 @@ zstyle ':omz:update' frequency 13
 # see 'man strftime' for details.
 # HIST_STAMPS="mm/dd/yyyy"
 
+# History
+HISTSIZE=5000
+HISTFILE=~/.zsh_history
+SAVEHIST=$HISTSIZE
+HISTDUP=erase
+setopt appendhistory
+setopt sharehistory
+setopt hist_ignore_space
+setopt hist_ignore_all_dups
+setopt hist_save_no_dups
+setopt hist_ignore_dups
+setopt hist_find_no_dups
+
+
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
@@ -77,7 +96,7 @@ zstyle ':omz:update' frequency 13
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(dotenv git aws gcloud helm kubectl zsh-interactive-cd zsh-completions jq fast-syntax-highlighting)
+plugins=(fzf-tab dotenv git aws gcloud helm kubectl zsh-interactive-cd zsh-completions jq fast-syntax-highlighting command-not-found)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -125,6 +144,11 @@ alias curl=curlie
 alias diff=delta
 alias watch=viddy
 eval "$(thefuck --alias)"
+zstyle ':completion:*' fzf-search-display true
+# force zsh not to show completion menu, which allows fzf-tab to capture the unambiguous prefix
+zstyle ':completion:*' menu no
+# preview directory's content with ls when completing cd
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 autoload -U +X compinit && compinit
 autoload -U +X bashcompinit && bashcompinit
 FNDIR=~/bash_completions/
@@ -145,7 +169,6 @@ export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 source $HOME/.oh-my-zsh/custom/plugins/fzf-tab-completion/zsh/fzf-zsh-completion.sh
 source $HOME/.oh-my-zsh/custom/plugins/zsh-tfswitch/zsh-tfswitch.plugin.zsh
 source $HOME/.oh-my-zsh/custom/plugins/forgit/forgit.plugin.zsh
-zstyle ':completion:*' fzf-search-display true
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 function install-metrics-server(){
