@@ -106,6 +106,9 @@ else
   # gawk required for https://github.com/lincheney/fzf-tab-completion on macOS
   brew install homebrew/cask/session-manager-plugin homebrew/cask/postman homebrew/cask/iterm2 homebrew/cask/visual-studio-code gawk proctools
   brew install --cask notunes
+  brew install stats
+  brew install pearcleaner
+  brew install --cask flycut
   echo "install flycut manually"
 fi
 echo "Open a new terminal"
