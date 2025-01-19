@@ -126,8 +126,6 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
 if type brew &>/dev/null; then
     FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
     FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
@@ -144,12 +142,11 @@ alias curl=curlie
 alias diff=delta
 alias watch=viddy
 eval "$(thefuck --alias)"
+source <(fzf --zsh)
 eval "$(atuin init zsh)"
 zstyle ':completion:*' fzf-search-display true
 # force zsh not to show completion menu, which allows fzf-tab to capture the unambiguous prefix
 zstyle ':completion:*' menu no
-autoload -U +X compinit && compinit
-autoload -U +X bashcompinit && bashcompinit
 FNDIR=~/bash_completions/
 if [ -d $FNDIR ]
 then
@@ -169,7 +166,9 @@ source $HOME/.oh-my-zsh/custom/plugins/fzf-tab-completion/zsh/fzf-zsh-completion
 source $HOME/.oh-my-zsh/custom/plugins/zsh-tfswitch/zsh-tfswitch.plugin.zsh
 source $HOME/.oh-my-zsh/custom/plugins/forgit/forgit.plugin.zsh
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-
+autoload -U +X compinit && compinit
+rm -f ~/.zcompdump; compinit
+autoload -U +X bashcompinit && bashcompinit
 function install-metrics-server(){
   helm repo add metrics-server https://kubernetes-sigs.github.io/metrics-server/
   helm upgrade --install metrics-server metrics-server/metrics-server --set args={"--kubelet-insecure-tls"} --namespace kube-system
