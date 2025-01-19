@@ -279,3 +279,13 @@ function exercism () {
   fi
 }
 
+# Select a docker container to remove it also allows multi selection:
+function drm() {
+  docker ps -a | sed 1d | fzf -q "$1" --no-sort -m --tac | awk '{ print $1 }' | xargs -r docker rm
+}
+
+
+# Select a docker image or images to remove
+function drmi() {
+  docker images | sed 1d | fzf -q "$1" --no-sort -m --tac | awk '{ print $3 }' | xargs -r docker rmi
+}
