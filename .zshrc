@@ -289,3 +289,52 @@ function drm() {
 function drmi() {
   docker images | sed 1d | fzf -q "$1" --no-sort -m --tac | awk '{ print $3 }' | xargs -r docker rmi
 }
+
+
+# shows certificate start and end date for host
+function cert-dates {
+  local host
+  local port
+
+  if [ $# -lt 1 ] || [ $# -gt 2 ]; then
+    >&2 echo "Usage: $0 <host> [port]"
+    return 1
+  fi
+
+  host="$1"
+  port="${2:-443}"
+
+  { echo \
+    | openssl s_client -servername $host -connect $host:$port \
+    | openssl x509 -noout -dates \
+  } 2> /dev/null \
+    | awk -F = '{ print $2 }'
+}
+
+# shows relativate certificate expiration date for host
+function cert-expires {
+  if [ $# -lt 1 ] || [ $# -gt 2 ]; then
+    >&2 echo "Usage: $0 <host> [port]"
+    return 1
+  fi
+
+  date=$(cert-dates "$1" "$2" | awk 'NR==2')
+  expires=$(gdate --date="$date" +%s)
+  now=$(gdate +%s)
+  diff=$(( (expires - now) / (60*60*24) ))
+  duration=
+  if [ $diff -gt 365 ]; then
+    duration="($(( diff / 365 )) years remaining)"
+  elif [ $diff -gt 30 ]; then
+    duration="($(( diff / 30 )) months remaining)"
+  elif [ $diff -gt 1 ]; then
+    duration="($diff days remaining)"
+  elif [ $diff -lt 0 ]; then
+    # should an expired cert give a non-zero error code?
+    duration='<!> expired <!>'
+  else
+    duration="($(( (expires - now) / (60*60) )) hours remaining)"
+  fi
+
+  echo "$date $duration"
+}
