@@ -96,7 +96,7 @@ setopt hist_find_no_dups
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(fzf-tab dotenv git aws gcloud helm kubectl zsh-interactive-cd zsh-completions jq fast-syntax-highlighting command-not-found)
+plugins=(fzf-tab dotenv git aws gcloud helm kubectl zsh-interactive-cd zsh-completions jq fast-syntax-highlighting command-not-found asdf)
 
 source $ZSH/oh-my-zsh.sh
 
