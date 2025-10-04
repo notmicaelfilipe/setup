@@ -1,5 +1,6 @@
 [core]
     pager = delta
+    excludesfile = ~/.gitignore
 
 [interactive]
     diffFilter = delta --color-only
@@ -15,3 +16,5 @@
 
 [diff]
     colorMoved = default
+[init]
+    defaultBranch = master
