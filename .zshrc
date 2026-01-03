@@ -309,6 +309,7 @@ function cert-dates {
     | openssl x509 -noout -dates \
   } 2> /dev/null \
     | awk -F = '{ print $2 }'
+  }
 }
 
 # shows relativate certificate expiration date for host
@@ -342,6 +343,32 @@ function cert-expires {
 export CARAPACE_BRIDGES='zsh,fish,bash,inshellisense' # optional
 zstyle ':completion:*' format $'\e[2;37mCompleting %d\e[m'
 source <(carapace _carapace)
+
+# -------------------------------------------
+# 1. Edit Command Buffer
+# -------------------------------------------
+# Open the current command in your $EDITOR (e.g., vim)
+# Press Ctrl+X followed by Ctrl+E to trigger (default binding)
+autoload -Uz edit-command-line
+zle -N edit-command-line
+# bindkey '^X^E' edit-command-line
+
+# For Vi mode users:
+# bindkey -M vicmd 'v' edit-command-line
+
+# -------------------------------------------
+# 2. Undo in ZSH
+# -------------------------------------------
+# Press Ctrl+_ (Ctrl+Underscore) to undo
+# This is built-in, no configuration needed!
+# Redo widget exists but has no default binding:
+# bindkey '^Y' redo  # Example binding if you want it
+
+# -------------------------------------------
+# 3. Magic Space - Expand History
+# -------------------------------------------
+# Expands history expressions like !! or !$ when you press space
+bindkey ' ' magic-space
 
 # =============================================================================
 #
