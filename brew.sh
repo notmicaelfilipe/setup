@@ -58,7 +58,7 @@ brew upgrade
 brew install awscli gcc jq kubectl kind k9s helm bat fzf htop dive kubie duf dust jesseduffield/lazydocker/lazydocker \
   homeport/tap/dyff zsh-completions romkatv/powerlevel10k/powerlevel10k pipx zsh-autosuggestions rs/tap/curlie \
   kubectx btop krew watch env0/terratag/terratag stern git-delta thefuck viddy shfmt surajincloud/tools/kubectl-eks atuin \
-  notmicaelfilipe/tap/kfilt asdf carapace gonzo zoxide
+  asdf carapace gonzo zoxide
 brew install notmicaelfilipe/tap/kuberlr --overwrite
 "$HOMEBREW_PREFIX/opt/fzf/install" --all
 pipx ensurepath
@@ -81,6 +81,7 @@ helm plugin install https://github.com/ContainerSolutions/helm-monitor
 kubectl krew index add netshoot https://github.com/nilic/kubectl-netshoot.git
 kubectl krew install netshoot/netshoot
 kubectl krew install podevents
+kubectl krew install kfilt
 
 pipx install awscli-local
 
