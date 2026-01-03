@@ -427,7 +427,7 @@ bindkey -s '^Xgc' 'git commit -m ""\C-b'
 # More examples:
 bindkey -s '^Xgp' 'git push origin '
 bindkey -s '^Xgs' 'git status\n'
-bindkey -s '^Xgl' 'git log --oneline -n 10\n'
+bindkey -s '^Xgl' 'git log --oneline -n 10'
 
 # =============================================================================
 #
