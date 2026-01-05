@@ -80,7 +80,7 @@ helm plugin install https://github.com/databus23/helm-diff --verify=false
 helm plugin install https://github.com/ContainerSolutions/helm-monitor --verify=false
 kubectl krew index add netshoot https://github.com/nilic/kubectl-netshoot.git
 kubectl krew install netshoot/netshoot
-kubectl krew install podevents
+KREW_ARCH="amd64" kubectl krew install podevents
 kubectl krew install kfilt
 
 pipx install awscli-local
@@ -96,6 +96,8 @@ cp .zshrc .p10k.zsh .gitignore .gitconfig ~/
 
 git config --global core.excludesfile ~/.gitignore
 
+sudo compaudit | xargs chmod go-w
+
 OS="$(uname)"
 if [[ "${OS}" != "Darwin" ]]; then
   echo "Skipping casks install has they only work in macOS"
@@ -106,10 +108,9 @@ if [[ "${OS}" != "Darwin" ]]; then
   echo "alias pbpaste='xsel --output --clipboard'" >> ~/.zshrc
 else
   # gawk required for https://github.com/lincheney/fzf-tab-completion on macOS
-  brew install homebrew/cask/session-manager-plugin homebrew/cask/postman homebrew/cask/iterm2 homebrew/cask/visual-studio-code gawk proctools
+  brew install homebrew/cask/session-manager-plugin homebrew/cask/iterm2 homebrew/cask/visual-studio-code gawk proctools
   brew install --cask notunes
   brew install stats
-  brew install pearcleaner
   brew install --cask flycut
   echo "install flycut manually"
 fi
