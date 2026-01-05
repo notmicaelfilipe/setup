@@ -309,7 +309,6 @@ function cert-dates {
     | openssl x509 -noout -dates \
   } 2> /dev/null \
     | awk -F = '{ print $2 }'
-  }
 }
 
 # shows relativate certificate expiration date for host
