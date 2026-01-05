@@ -76,8 +76,8 @@ kubectl krew install rolesum
 kubectl krew install np-viewer
 kubectl krew install gadget
 kubectl krew install who-can
-helm plugin install https://github.com/databus23/helm-diff
-helm plugin install https://github.com/ContainerSolutions/helm-monitor
+helm plugin install https://github.com/databus23/helm-diff --verify=false
+helm plugin install https://github.com/ContainerSolutions/helm-monitor --verify=false
 kubectl krew index add netshoot https://github.com/nilic/kubectl-netshoot.git
 kubectl krew install netshoot/netshoot
 kubectl krew install podevents
