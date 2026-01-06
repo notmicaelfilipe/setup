@@ -85,19 +85,45 @@ kubectl krew install kfilt
 pipx install awscli-local
 
 if [ ! -d ~/bash_completions ]; then
-  cp -r bash_completions ~
+  cp -r bash_completions ~/
 fi
 
 curl -Ls https://rawgit.com/kubermatic/fubectl/master/fubectl.source -o ~/bash_completions/fubectl.source
 
 sudo cp -f ./kubectl-net_forward /usr/local/bin
-cp .zshrc .p10k.zsh .gitignore .gitconfig ~/
+
+if [ ! -f ~/.zshrc ]; then
+  echo ".zshrc file not found copying"
+  cp .zshrc ~/
+else
+  echo "Existing .zshrc found, skipping"
+fi
+
+if [ ! -f ~/.gitconfig ]; then
+  echo ".gitconfig file not found copying"
+  cp .gitconfig ~/
+else
+  echo "Existing .gitconfig found skipping"
+fi
+
+if [ ! -f ~/.p10k.zsh ]; then
+  echo ".p10k.zsh file not found copying"
+  cp .p10k.zsh ~/
+else
+  echo "Existing .p10k.zsh found skipping"
+fi
+
+if [ ! -f ~/.gitignore ]; then
+  echo ".gitignore file not found copying"
+  cp .gitignore ~/
+else
+  echo "Existing .gitignore found skipping"
+fi
 
 git config --global core.excludesfile ~/.gitignore
 
-sudo compaudit | xargs chmod go-w
+chmod -R go-w "$(brew --prefix)/share"
 
-OS="$(uname)"
 if [[ "${OS}" != "Darwin" ]]; then
   echo "Skipping casks install has they only work in macOS"
   echo "Install postman, session manager plugin, vscode manually"
