@@ -68,7 +68,6 @@ kubectl krew install lineage
 kubectl krew install example
 kubectl krew install neat
 kubectl krew install explore
-# kubectl krew install ingress-nginx
 kubectl krew install cert-manager
 kubectl krew install rbac-tool
 kubectl krew install access-matrix
