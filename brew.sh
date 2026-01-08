@@ -135,7 +135,6 @@ else
   # gawk required for https://github.com/lincheney/fzf-tab-completion on macOS
   brew install homebrew/cask/session-manager-plugin homebrew/cask/iterm2 homebrew/cask/visual-studio-code gawk proctools coreutils
   brew install --cask notunes
-  brew install stats
   brew install --cask flycut
 fi
 echo "Open a new terminal"
